@@ -1,7 +1,7 @@
 ---
 title: "Penguins"
 author: "Anna Reynolds"
-date: "13/06/2020"
+date: "27/07/2020"
 output: 
   rmarkdown::html_document:
     theme: sandstone
@@ -31,6 +31,8 @@ labels <- c(
     width='100' /><br>*P. papua*"
 )
 
+pal <- c("#FF6B01", "#C65BCB", "#067276")
+
 ggplot(penguins, aes(species, body_mass_g)) +
   geom_boxplot() +
   scale_x_discrete(
@@ -41,9 +43,16 @@ ggplot(penguins, aes(species, body_mass_g)) +
   labs(title = "Penguin size, Palmer Station, Antarctica LTER", caption = "Artwork by @allison_horst") +
   theme(
     axis.text.x = element_markdown(color = "black", size = 11),
-     plot.title.position = "plot"
-  )
+     plot.title.position = "plot",
+    legend.position = "none"
+  ) + geom_jitter(aes(color=factor(species))) + scale_colour_manual(values = pal)
 ```
+
+### References
+
+Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago
+(Antarctica) penguin data. R package version 0.1.0.
+https://allisonhorst.github.io/palmerpenguins/
 
 Gorman KB, Williams TD, Fraser WR (2014) Ecological Sexual Dimorphism and Environmental
 Variability within a Community of Antarctic Penguins (Genus Pygoscelis). PLoS ONE 9(3):
